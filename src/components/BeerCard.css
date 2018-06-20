@@ -1,0 +1,16 @@
+
+.card-body {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.card-body img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.card-body p {
+  width: 24em;
+}
