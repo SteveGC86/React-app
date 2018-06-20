@@ -1,9 +1,18 @@
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+  border-radius: .2em;
+  box-shadow: 0px 2px 4px 0px black;
+}
+
 .card-body {
   display:flex;
   flex-direction: column;
   align-items: center;
-
+  
 }
 
 .card-body img {
@@ -13,4 +22,36 @@
 
 .card-body p {
   width: 24em;
+}
+
+.card-footer {
+  align-self: flex-end;
+}
+
+
+.btn {
+  border: 1px solid crimson;
+  font-size: 1em;
+  box-shadow: 0px 2px 2px 0px black;
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.btn-danger {
+  color: white;
+  border: 1px solid crimson;
+  background-color: firebrick;
+}
+
+.card-footer button {
+  align-self: flex-end;
+  font-size: 1em;
+  display: flex;
+  color: white;
+  border: 1px solid crimson;
+  background-color: firebrick;
+  cursor: pointer;
+  min-width: 70px;
+  padding: .5em 1.2em .3em 1em;
+  box-shadow: 0px 2px 2px 0px black;
 }

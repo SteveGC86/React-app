@@ -11,6 +11,9 @@ const BeerCard = ({id, name, imageUrl, description}) => {
           <img src={imageUrl} alt={name}/>
           <p>{description}</p>
         </div>
+        <div className="card-footer">
+          <button className="btn btn-danger">Delete</button>
+        </div>
       </div>
 }
 
