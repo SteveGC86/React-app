@@ -2,17 +2,23 @@ import React from 'react'
 import './BeerCard.css'
 
 // arrow function in a variable
-const BeerCard = ({id, name, imageUrl, description}) => {
+const BeerCard = ({
+  id,
+  name,
+  image_url,
+  description,
+  handleDelete
+    }) => {
   return <div key={id} className="card">
         <div className="card-title">
           <h2>{name}</h2>
         </div>
         <div className="card-body">
-          <img src={imageUrl} alt={name}/>
+          <img src={image_url} alt={name}/>
           <p>{description}</p>
         </div>
         <div className="card-footer">
-          <button className="btn btn-danger">Delete</button>
+          <button  onClick={()=>{handleDelete(id)}} className="btn btn-danger">Delete</button>
         </div>
       </div>
 }

@@ -14,6 +14,16 @@ import './App.css';
 // 3. Fetch the data (first up using fetch then switch to axios)
 // 4. Set the state
 
+function parseBeer(beer) {
+  const {id, name, description, image_url} = beer
+  return {
+    id,
+    name,
+    description,
+    image_url,
+  }
+}
+
 class App extends Component {                            // Extends component inherits all of the methods
 
   state = {
@@ -21,21 +31,14 @@ class App extends Component {                            // Extends component in
 
   }
 
-  componentDidMount() {                                 // Step 2. ComponentDidMount()  is a promise needs then and catch
+   componentDidMount() {                                 // Step 2. ComponentDidMount()  is a promise needs then and catch
     const beerURL = 'http://localhost:3000/beers'
     fetch(beerURL)
       .then(response => response.json())               // Step 3. fetching the data the first then returns the data in json format
       .then(beersData => {                             // beersdata 
 
         // Make the beer info coming in shorter
-        const beers = beersData.map(function(beer){
-          return {
-            id: beer.id,
-            name: beer.name,
-            description: beer.description,            // 
-            imageUrl: beer.image_url
-          }
-        })
+        const beers = beersData.map(parseBeer)
 
         this.setState({                               // Turn our JS 
           beers                              // Sets the 
@@ -43,6 +46,20 @@ class App extends Component {                            // Extends component in
      })
      .catch(err => console.err(err))     
   }
+
+deleteBeer = (id) => {
+  const beerURL = `http://localhost:3000/beers/${id}`
+  fetch(beerURL, {method: 'DELETE'})
+  .then(res => res.json()) 
+  .then (() => {
+    this.setState(prevState => {
+      return {
+        beers: prevState.beers.filter(beer => beer.id !== id)
+      }
+    })
+  })  
+  .catch(err => console.error(err))
+}
 
 
 
@@ -54,7 +71,7 @@ class App extends Component {                            // Extends component in
     console.info(this.state.beers) // Loopover state
 
       const beers = this.state.beers.map(beer => {
-        return <BeerCard key={beer.id} {...beer}/> // ...beer is a spread operator and remvoves having to do name={beer.name}
+        return <BeerCard handleDelete={this.deleteBeer} key={beer.id} {...beer}/> // ...beer is a spread operator and remvoves having to do name={beer.name}
       })
 
     return (
